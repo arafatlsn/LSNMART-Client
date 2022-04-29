@@ -1,8 +1,9 @@
 import React from 'react';
 import { TiInfoLarge } from 'react-icons/ti'
+import { Link } from 'react-router-dom';
 
 const Card = ({ elProd }) => {
-  const {name, img, price, quantity, supplier} = elProd;
+  const {_id, name, img, price, quantity, supplier} = elProd;
   console.log(elProd)
   return (
     <div className='w-[194px] h-[343px] border p-[1rem]'>
@@ -14,7 +15,7 @@ const Card = ({ elProd }) => {
         <h1 title={name} className='whitespace-nowrap overflow-hidden text-ellipsis'>{name}</h1>
         <div className='flex justify-between'>
         <h4 className='text-lg font-bold'>${price}</h4>
-        <button className='border px-3 font-bold text-[#3A2A2F] hover:bg-[#3A2A2F] hover:text-white'>Update</button>
+        <Link to={`/inventory/:${_id}`} className='border px-3 font-bold text-[#3A2A2F] hover:bg-[#3A2A2F] hover:text-white'>Update</Link>
         </div>
         <p className='flex text-[#48b448] items-center m-0'><TiInfoLarge className='text-2xl'/> In Stock, <span className='font-bold mx-1'>{quantity}</span> units</p>
       </div>
