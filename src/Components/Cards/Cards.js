@@ -11,7 +11,6 @@ const Cards = () => {
     }
     func()
   }, [])
-  console.log(products)
   return (
     <div className='w-[65%] mx-auto grid grid-cols-2 lg:grid-cols-6 justify-center justify-items-center gap-0'>
       {

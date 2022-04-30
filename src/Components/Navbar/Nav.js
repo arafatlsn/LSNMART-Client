@@ -15,7 +15,7 @@ const Nav = () => {
         </div>
         <div className='flex'>
           <h3 className='mx-2 text-lg font-bold underline'>Home</h3>
-          <h3 className='mx-2 text-lg font-bold underline'>Manage Items</h3>
+          <Link to={'/manageinventory'} className='mx-2 text-lg font-bold underline'>Manage Inventory</Link>
           <h3 className='mx-2 text-lg font-bold underline'>Add Items</h3>
           <h3 className='mx-2 text-lg font-bold underline'>My Items</h3>
           {

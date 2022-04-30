@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 const Card = ({ elProd }) => {
   const {_id, name, img, price, quantity, supplier} = elProd;
-  console.log(elProd)
   return (
     <div className='w-[194px] h-[343px] border p-[1rem]'>
       <div className='h-[194px] flex items-center'>
