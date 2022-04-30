@@ -25,7 +25,7 @@ const Inventory = () => {
     if(prodQuantity && proceed){
       setQuantity( prodQuantity + Number(addQuantity));
       const func = async() => {
-        const url = `http://localhost:5000/update?quantity=${prodQuantity + Number(addQuantity)}`
+        const url = `http://localhost:5000/update?quantity=${quantity + Number(addQuantity)}&&id=${_id.split(':')[1]}`
         const { data } = await axios.put(url);
       }
       func()
@@ -33,7 +33,27 @@ const Inventory = () => {
     else if(proceed){
       setQuantity(quantity + Number(addQuantity));
       const func = async() => {
-        const url = `http://localhost:5000/update?quantity=${quantity + Number(addQuantity)}`
+        const url = `http://localhost:5000/update?quantity=${quantity + Number(addQuantity)}&&id=${_id.split(':')[1]}`
+        const { data } = await axios.put(url);
+      }
+      func()
+    }
+  }
+
+  const reduceQuantity = () => {
+    const proceed = window.confirm('are sure?')
+    if(prodQuantity && proceed){
+      setQuantity( prodQuantity - 1);
+      const func = async() => {
+        const url = `http://localhost:5000/update?quantity=${quantity - 1}&&id=${_id.split(':')[1]}`
+        const { data } = await axios.put(url);
+      }
+      func()
+    }
+    else if(proceed){
+      setQuantity(quantity - 1);
+      const func = async() => {
+        const url = `http://localhost:5000/update?quantity=${quantity - 1}&&id=${_id.split(':')[1]}`
         const { data } = await axios.put(url);
       }
       func()
@@ -63,7 +83,7 @@ const Inventory = () => {
           </div>
           <div className='mt-[3rem]'>
             <button onClick={() => setUpdate(true)} className='px-5 py-2 border w-[50%] font-bold font-mono text-[#3A2A2F] hover:bg-[#F7F4F2]'>Update</button>
-            <button className='px-5 py-2 border w-[50%] font-bold font-mono text-[#3A2A2F] hover:bg-[#F7F4F2]'>Delivered</button>
+            <button onClick={reduceQuantity} className='px-5 py-2 border w-[50%] font-bold font-mono text-[#3A2A2F] hover:bg-[#F7F4F2]'>Delivered</button>
           </div>
         </div>
       </div>
