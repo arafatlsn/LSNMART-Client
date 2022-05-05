@@ -25,7 +25,7 @@ const Inventory = () => {
     if(prodQuantity && proceed){
       setQuantity( prodQuantity + Number(addQuantity));
       const func = async() => {
-        const url = `http://localhost:5000/update?quantity=${quantity + Number(addQuantity)}&&id=${_id.split(':')[1]}`
+        const url = `http://localhost:5000/update?quantity=${prodQuantity + Number(addQuantity)}&&id=${_id.split(':')[1]}`
         const { data } = await axios.put(url);
       }
       func()
@@ -45,7 +45,7 @@ const Inventory = () => {
     if(prodQuantity && proceed){
       setQuantity( prodQuantity - 1);
       const func = async() => {
-        const url = `http://localhost:5000/update?quantity=${quantity - 1}&&id=${_id.split(':')[1]}`
+        const url = `http://localhost:5000/update?quantity=${prodQuantity - 1}&&id=${_id.split(':')[1]}`
         const { data } = await axios.put(url);
       }
       func()
@@ -74,7 +74,7 @@ const Inventory = () => {
           <p className='font-bold'>Supplier: {supplier}</p>
           <p><span className='font-bold'>Description:</span> {description}</p>
           <div className='mt-5 flex items-center'>
-          <p className='font-bold'>Quantity: <span className='px-4 py-[.44rem] border ml-3'>{prodQuantity ? prodQuantity : quantity}</span></p>
+          <p className='font-bold'>Stock: <span className='px-4 py-[.44rem] border ml-3'>{prodQuantity ? prodQuantity : quantity}</span></p>
           {
             update && <div className='flex'><p className='border px-3 py-[.57rem]'><BsPlusLg/></p>
             <input onBlur={(e) => setAddQuantity(e.target.value)} placeholder='00' className='border w-[3.4rem] px-3 py-[.35rem] font-bold font-mono focus:outline-none' type="text" name="" id="" />
@@ -82,7 +82,7 @@ const Inventory = () => {
           }
           </div>
           <div className='mt-[3rem]'>
-            <button onClick={() => setUpdate(true)} className='px-5 py-2 border w-[50%] font-bold font-mono text-[#3A2A2F] hover:bg-[#F7F4F2]'>Update</button>
+            <button onClick={() => setUpdate(true)} className='px-5 py-2 border w-[50%] font-bold font-mono text-[#3A2A2F] hover:bg-[#F7F4F2]'>Re-Stock</button>
             <button onClick={reduceQuantity} className='px-5 py-2 border w-[50%] font-bold font-mono text-[#3A2A2F] hover:bg-[#F7F4F2]'>Delivered</button>
           </div>
         </div>

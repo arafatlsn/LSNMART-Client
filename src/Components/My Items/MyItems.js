@@ -1,13 +1,16 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import ProdTable from '../../ProdTable/ProdTable';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../FireBase/Firebase.init';
+import ProdTable from '../../ProdTable/ProdTable'
 
-const ManageInventory = () => {
-  const [products, setProducts] = useState([])
-  console.log(products)
+const MyItems = () => {
+  const [user] = useAuthState(auth);
+  const [products, setProducts] = useState([]);
   useEffect(() => {
     const func = async() => {
-      const { data } = await axios.get('http://localhost:5000/products?size=0');
+      const url = `http://localhost:5000/myitems?email=${user.email}`;
+      const { data } = await axios.get(url);
       setProducts(data)
     }
     func()
@@ -30,4 +33,4 @@ const ManageInventory = () => {
   );
 };
 
-export default ManageInventory;
+export default MyItems;

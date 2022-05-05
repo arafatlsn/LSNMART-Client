@@ -14,10 +14,10 @@ const Nav = () => {
           <Link to={'/'} className='text-2xl font-bold'>LSNMART</Link>
         </div>
         <div className='flex'>
-          <h3 className='mx-2 text-lg font-bold underline'>Home</h3>
+          <Link to={'/'} className='mx-2 text-lg font-bold underline'>Home</Link>
           <Link to={'/manageinventory'} className='mx-2 text-lg font-bold underline'>Manage Inventory</Link>
-          <h3 className='mx-2 text-lg font-bold underline'>Add Items</h3>
-          <h3 className='mx-2 text-lg font-bold underline'>My Items</h3>
+          <Link to={'/additem'} className='mx-2 text-lg font-bold underline'>Add Items</Link>
+          <Link to={'/myitems'} className='mx-2 text-lg font-bold underline'>My Items</Link>
           {
             !user ? <Link to={'/signin'} className='lg:absolute top-3 right-5 mx-2 text-lg font-bold bg-white hover:bg-[#F7F4F2] text-[#3A2A2F] px-6 py-1 rounded-lg'>Sign in</Link> : <Link onClick={userSignOut} to={'/signin'} className='lg:absolute top-3 right-5 mx-2 text-lg font-bold bg-white hover:bg-[#F7F4F2] text-[#3A2A2F] px-6 py-1 rounded-lg'>Sign out</Link> 
           }
