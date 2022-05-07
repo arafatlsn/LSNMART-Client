@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import ProdTable from '../../ProdTable/ProdTable';
 
 const ManageInventory = () => {
@@ -25,8 +26,11 @@ const ManageInventory = () => {
   }
   return (
     products.length && <div className='w-[65%] mx-auto'>
+      <div>
     <ProdTable products={products} removeItem={removeItem}></ProdTable>
   </div>
+  <div className='mt-[1.5rem] flex justify-end'><Link className='text-[#187FEF] underline font-bold' to={'/additem'}>Add new Item</Link></div>
+    </div>
   );
 };
 

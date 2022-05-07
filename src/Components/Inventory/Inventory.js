@@ -1,12 +1,16 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { BsStarFill, BsPlusLg } from 'react-icons/bs'
+import './inventory.css'
 
 const Inventory = () => {
   const [product, setProduct] = useState([]);
   const [update, setUpdate] = useState(false);
+  const [quantUpdate, setQuantUpdate] = useState(0);
+
   const {_id} = useParams();
+  
   useEffect(() => {
     const func = async() => {
       const url = `http://localhost:5000/product?prod=${_id.split(':')[1]}`
@@ -14,48 +18,31 @@ const Inventory = () => {
     setProduct(data);
     }
     func()
-  }, [])
+  }, [quantUpdate])
 
   const { img, name, description, price, quantity, supplier } = product;
-  const [prodQuantity, setQuantity] = useState(0);
   const [addQuantity, setAddQuantity] = useState(0);
 
   const increaseQuantity = () => {
-    const proceed = window.confirm('are sure?')
-    if(prodQuantity && proceed){
-      setQuantity( prodQuantity + Number(addQuantity));
-      const func = async() => {
-        const url = `http://localhost:5000/update?quantity=${prodQuantity + Number(addQuantity)}&&id=${_id.split(':')[1]}`
-        const { data } = await axios.put(url);
-      }
-      func()
-    }
-    else if(proceed){
-      setQuantity(quantity + Number(addQuantity));
-      const func = async() => {
+    const proceed = window.confirm('are sure?');
+    if(proceed){
+      const func = () => {
         const url = `http://localhost:5000/update?quantity=${quantity + Number(addQuantity)}&&id=${_id.split(':')[1]}`
-        const { data } = await axios.put(url);
+        const { data } = axios.put(url);
       }
       func()
+      setQuantUpdate(quantUpdate + 1)
     }
   }
 
   const reduceQuantity = () => {
     const proceed = window.confirm('are sure?')
-    if(prodQuantity && proceed){
-      setQuantity( prodQuantity - 1);
-      const func = async() => {
-        const url = `http://localhost:5000/update?quantity=${prodQuantity - 1}&&id=${_id.split(':')[1]}`
-        const { data } = await axios.put(url);
-      }
-      func()
-    }
-    else if(proceed){
-      setQuantity(quantity - 1);
-      const func = async() => {
+    if(proceed){
+      const func = () => {
         const url = `http://localhost:5000/update?quantity=${quantity - 1}&&id=${_id.split(':')[1]}`
-        const { data } = await axios.put(url);
+        const { data } = axios.put(url);
       }
+      setQuantUpdate(quantUpdate - 1)
       func()
     }
   }
@@ -74,16 +61,22 @@ const Inventory = () => {
           <p className='font-bold'>Supplier: {supplier}</p>
           <p><span className='font-bold'>Description:</span> {description}</p>
           <div className='mt-5 flex items-center'>
-          <p className='font-bold'>Stock: <span className='px-4 py-[.44rem] border ml-3'>{prodQuantity ? prodQuantity : quantity}</span></p>
+          <p className='font-bold'>Stock: <span className='px-4 py-[.44rem] border ml-3'>{quantity}</span></p>
           {
             update && <div className='flex'><p className='border px-3 py-[.57rem]'><BsPlusLg/></p>
-            <input onBlur={(e) => setAddQuantity(e.target.value)} placeholder='00' className='border w-[3.4rem] px-3 py-[.35rem] font-bold font-mono focus:outline-none' type="text" name="" id="" />
+            <input onBlur={(e) => setAddQuantity(e.target.value)} placeholder='00' className='border w-[3.2rem] px-3 py-[.35rem] font-bold font-mono focus:outline-none' type="number" name="" id="" />
             <button onClick={increaseQuantity} className='ml-5 px-5 font-bold font-mono text-[#3A2A2F] border rounded-lg hover:bg-[#F7F4F2]'>Confirm</button></div>
           }
           </div>
           <div className='mt-[3rem]'>
             <button onClick={() => setUpdate(true)} className='px-5 py-2 border w-[50%] font-bold font-mono text-[#3A2A2F] hover:bg-[#F7F4F2]'>Re-Stock</button>
-            <button onClick={reduceQuantity} className='px-5 py-2 border w-[50%] font-bold font-mono text-[#3A2A2F] hover:bg-[#F7F4F2]'>Delivered</button>
+            <button onClick={() => {
+              quantity >= 1 ? reduceQuantity() : alert('sold out')
+            }} className='px-5 py-2 border w-[50%] font-bold font-mono text-[#3A2A2F] hover:bg-[#F7F4F2]'>{quantity > 0 ? 'Delivered' : 'Sold out'}</button>
+          </div>
+          <div className='flex flex-col items-end w-100 mt-[1rem]'>
+            <Link className='text-[#187FEF] underline font-bold' to={'/additem'}>Add new Item</Link>
+            <Link className='text-[#187FEF] underline font-bold' to={'/manageinventory'}>Manage Inventories</Link>
           </div>
         </div>
       </div>

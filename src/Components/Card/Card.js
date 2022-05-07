@@ -7,7 +7,7 @@ const Card = ({ elProd }) => {
   return (
     <div className='w-[194px] h-[343px] border p-[1rem]'>
       <div className='h-[194px] flex items-center'>
-        <img className='w-[194px] object-cover' src={img} alt="product" />
+        <img className='w-[194px] h-[100%] object-contain' src={img} alt="product" />
       </div>
       <div className='mt-3'>
         <p className='m-0'>{supplier}</p>

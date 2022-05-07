@@ -17,7 +17,8 @@ const AddItem = () => {
     const supplier = e.target.supplier.value;
     const email = e.target.email.value;
     const description = e.target.description.value;
-    const itemObj = {name, img, price, quantity, supplier, email, description};
+    const time = new Date().toLocaleString();
+    const itemObj = {name, img, price, quantity, supplier, email, description, time};
     const func = async() => {
       const { data } = await axios.post('http://localhost:5000/additem', itemObj)
     }
