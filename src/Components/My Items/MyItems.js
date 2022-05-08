@@ -24,7 +24,6 @@ const MyItems = () => {
       catch(error){
         const status = error.response.status;
         if(status == 403 || status == 401){
-          // console.log('hello world')
           userSignOut()
         }
       }

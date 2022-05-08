@@ -33,8 +33,6 @@ const useFirebase = () => {
     auth
   );
 
-  console.log(errorCreateEmailPass?.message)
-
   return { signInWithGoogle, userSignOut, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, sendEmailVerification, errorSignInWithEmailAndPassword, errorCreateEmailPass }
 };
 

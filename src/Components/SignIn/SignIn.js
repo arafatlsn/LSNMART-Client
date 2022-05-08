@@ -57,7 +57,6 @@ const SignIn = () => {
           <input type="password" name='password' placeholder='Password' className='border p-2 font-bold' />
           <p className='font-mono text-[dimgray]'>Forget Password? <span onClick={async() => {
             await sendPasswordResetEmail(email);
-            console.log(email)
             toast('Password Reset link sent your email.')
           }} className='font-bold underline text-[#0066F2] cursor-pointer'>Reset</span></p>
           <div className='mt-[2rem] flex flex-col align-center'>

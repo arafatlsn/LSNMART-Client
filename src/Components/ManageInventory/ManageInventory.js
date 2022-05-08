@@ -5,7 +5,6 @@ import ProdTable from '../../ProdTable/ProdTable';
 
 const ManageInventory = () => {
   const [products, setProducts] = useState([])
-  console.log(products)
   useEffect(() => {
     const func = async() => {
       const { data } = await axios.get('https://cryptic-everglades-57877.herokuapp.com/products?size=0');
