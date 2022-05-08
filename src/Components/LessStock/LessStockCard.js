@@ -2,7 +2,6 @@ import React from 'react';
 
 const LessStockCard = ({ elProd, children }) => {
   const { img, name, quantity, supplier } = elProd;
-  console.log(children)
   return (
     <div className='flex border px-2 py-1'>
       <div>

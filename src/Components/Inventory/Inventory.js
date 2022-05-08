@@ -13,7 +13,7 @@ const Inventory = () => {
   
   useEffect(() => {
     const func = async() => {
-      const url = `http://localhost:5000/product?prod=${_id.split(':')[1]}`
+      const url = `https://cryptic-everglades-57877.herokuapp.com/product?prod=${_id.split(':')[1]}`
     const { data } = await axios.get(url)
     setProduct(data);
     }
@@ -27,7 +27,7 @@ const Inventory = () => {
     const proceed = window.confirm('are sure?');
     if(proceed){
       const func = () => {
-        const url = `http://localhost:5000/update?quantity=${quantity + Number(addQuantity)}&&id=${_id.split(':')[1]}`
+        const url = `https://cryptic-everglades-57877.herokuapp.com/update?quantity=${quantity + Number(addQuantity)}&&id=${_id.split(':')[1]}`
         const { data } = axios.put(url);
       }
       func()
@@ -39,7 +39,7 @@ const Inventory = () => {
     const proceed = window.confirm('are sure?')
     if(proceed){
       const func = () => {
-        const url = `http://localhost:5000/update?quantity=${quantity - 1}&&id=${_id.split(':')[1]}`
+        const url = `https://cryptic-everglades-57877.herokuapp.com/update?quantity=${quantity - 1}&&id=${_id.split(':')[1]}`
         const { data } = axios.put(url);
       }
       setQuantUpdate(quantUpdate - 1)
@@ -48,9 +48,9 @@ const Inventory = () => {
   }
   
   return (
-    <div className='min-h-screen bg-[#F7F4F2] p-[1rem]'>
+    <div className='min-h-screen bg-[#F7F4F2] lg:p-[1rem]'>
       <div className='lg:w-[65%] mx-auto grid lg:grid-cols-2 justify-items-center items-center gap-[2rem]'>
-        <div className='bg-white w-[100%] h-[100%] flex justify-center p-8 rounded-2xl'>
+        <div className='bg-white w-[100%] h-[100%] flex justify-center lg:p-8 rounded-2xl'>
           <img className='w-[80%] object-contain' src={img} alt="product" />
         </div>
         <div className='bg-white w-[100%] h-[100%] p-8 rounded-2xl'>
@@ -61,10 +61,10 @@ const Inventory = () => {
           <p className='font-bold'>Supplier: {supplier}</p>
           <p><span className='font-bold'>Description:</span> {description}</p>
           <div className='mt-5 flex items-center'>
-          <p className='font-bold'>Stock: <span className='px-4 py-[.44rem] border ml-3'>{quantity}</span></p>
+          <p className='font-bold'>Stock: <span className='px-4 py-[.44rem] border ml-3 block lg:inline-block'>{quantity}</span></p>
           {
-            update && <div className='flex'><p className='border px-3 py-[.57rem]'><BsPlusLg/></p>
-            <input onBlur={(e) => setAddQuantity(e.target.value)} placeholder='00' className='border w-[3.2rem] px-3 py-[.35rem] font-bold font-mono focus:outline-none' type="number" name="" id="" />
+            update && <div className='flex mt-6 lg:mt-0'><p className='border px-3 py-[.57rem]'><BsPlusLg/></p>
+            <input onBlur={(e) => setAddQuantity(e.target.value)} placeholder='00' className='border w-[3.2rem] px-3 py-[.48rem] lg:py-[.45rem] font-bold font-mono focus:outline-none' type="number" name="" id="" />
             <button onClick={increaseQuantity} className='ml-5 px-5 font-bold font-mono text-[#3A2A2F] border rounded-lg hover:bg-[#F7F4F2]'>Confirm</button></div>
           }
           </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import auth from './Firebase.init';
-import { useCreateUserWithEmailAndPassword, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSendEmailVerification, useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { signOut } from 'firebase/auth';
 
 const useFirebase = () => {
@@ -24,8 +24,18 @@ const useFirebase = () => {
   const userSignOut = () => {
     signOut(auth)
   }
+  // reset password 
+  const [sendPasswordResetEmail, sending, errorResetPassword] = useSendPasswordResetEmail(
+    auth
+  );
+  // sent email verification 
+  const [sendEmailVerification, sendingEmailVerification, errorEmailVerification] = useSendEmailVerification(
+    auth
+  );
 
-  return { signInWithGoogle, userSignOut, createUserWithEmailAndPassword, signInWithEmailAndPassword }
+  console.log(errorCreateEmailPass?.message)
+
+  return { signInWithGoogle, userSignOut, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, sendEmailVerification, errorSignInWithEmailAndPassword, errorCreateEmailPass }
 };
 
 export default useFirebase;

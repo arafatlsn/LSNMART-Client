@@ -20,7 +20,7 @@ const AddItem = () => {
     const time = new Date().toLocaleString();
     const itemObj = {name, img, price, quantity, supplier, email, description, time};
     const func = async() => {
-      const { data } = await axios.post('http://localhost:5000/additem', itemObj)
+      const { data } = await axios.post('https://cryptic-everglades-57877.herokuapp.com/additem', itemObj)
     }
     func()
     e.target.reset()
@@ -28,7 +28,7 @@ const AddItem = () => {
   }
 
   return (
-    <div className='w-[45%] mx-auto mt-[4rem] p-[3rem] bg-[#F7F4F2]'>
+    <div className='w-[100%] lg:w-[45%] mx-auto lg:mt-[4rem] p-[3rem] bg-[#F7F4F2]'>
       <div className='flex flex-col'>
         <h1 className='text-center mb-[1rem] text-4xl font-bold font-mono'>Add new Item</h1>
       </div>

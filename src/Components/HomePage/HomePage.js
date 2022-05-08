@@ -3,6 +3,7 @@ import Cards from '../Cards/Cards';
 import Carousel from '../Carousel/Carousel';
 import LessStock from '../LessStock/LessStock';
 import RecentProduct from '../RecentProduct/RecentProduct';
+import SpinnerComp from '../SpinnerComp/SpinnerComp'
 
 const HomePage = () => {
   return (

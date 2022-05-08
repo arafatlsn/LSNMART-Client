@@ -6,8 +6,8 @@ const Card = ({ elProd }) => {
   const {_id, name, img, price, quantity, supplier} = elProd;
   return (
     <div className='w-[194px] h-[343px] border p-[1rem]'>
-      <div className='h-[194px] flex items-center'>
-        <img className='w-[194px] h-[100%] object-contain' src={img} alt="product" />
+      <div className='h-[194px] flex justify-center items-center'>
+        <img className='lg:w-[100%] h-[100%] object-contain' src={img} alt="product" />
       </div>
       <div className='mt-3'>
         <p className='m-0'>{supplier}</p>

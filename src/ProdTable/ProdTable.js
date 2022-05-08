@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const ProdTable = ({ products, removeItem }) => {
   return (
-    <table className='w-[100%]'>
+    <table className='w-[1236px] lg:w-[100%]'>
       <thead>
         <tr className='grid grid-cols-5 justify-items-center bg-[#F7F4F2] py-[1rem]'>
           <th className='text-xl font-mono'>Product</th>
@@ -18,7 +18,7 @@ const ProdTable = ({ products, removeItem }) => {
       <tbody className=''>
       {
         products.map(elProd => {
-          return <tr className='grid grid-cols-5 justify-items-center items-center border py-[.8rem] px-[.5rem]'>
+          return <tr className=' grid grid-cols-5 justify-items-center items-center border py-[.8rem] px-[.5rem]'>
             <td>
               <div className='flex items-center'>
                 <div className='mr-3'>

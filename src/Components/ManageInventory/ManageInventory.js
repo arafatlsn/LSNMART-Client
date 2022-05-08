@@ -8,7 +8,7 @@ const ManageInventory = () => {
   console.log(products)
   useEffect(() => {
     const func = async() => {
-      const { data } = await axios.get('http://localhost:5000/products?size=0');
+      const { data } = await axios.get('https://cryptic-everglades-57877.herokuapp.com/products?size=0');
       setProducts(data)
     }
     func()
@@ -16,7 +16,7 @@ const ManageInventory = () => {
   const removeItem = async(item) => {
     const proceed = window.confirm('are you sure?');
     if(proceed){
-      const url = `http://localhost:5000/remove?rmitem=${item}`
+      const url = `https://cryptic-everglades-57877.herokuapp.com/remove?rmitem=${item}`
       const { data } = await axios.get(url);
       if(data.deletedCount){
         const rmFilter = products.filter(el => el._id !== item);
@@ -25,7 +25,7 @@ const ManageInventory = () => {
     }
   }
   return (
-    products.length && <div className='w-[65%] mx-auto'>
+    products.length && <div className='lg:w-[65%] mx-auto overflow-x-auto'>
       <div>
     <ProdTable products={products} removeItem={removeItem}></ProdTable>
   </div>

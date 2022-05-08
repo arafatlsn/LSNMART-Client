@@ -10,7 +10,12 @@ import Inventory from './Components/Inventory/Inventory';
 import ManageInventory from './Components/ManageInventory/ManageInventory';
 import AddItem from './Components/AddItem/AddItem';
 import MyItems from './Components/My Items/MyItems';
-
+import Footer from './Components/Footer/Footer';
+import NotFound from './Components/NotFound/NotFound';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Blogs from '../src/Components/Blogs/Blogs'
+import About from './Components/About/About';
 function App() {
   return (
     <div>
@@ -31,7 +36,12 @@ function App() {
         <Route path='/myitems' element={<RequireAuth>
           <MyItems></MyItems>
         </RequireAuth>}></Route>
+        <Route path={'/blogs'} element={<Blogs></Blogs>}></Route>
+        <Route path='/about' element={<About></About>}></Route>
+        <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
+      <Footer></Footer>
+      <ToastContainer/>
     </div>
   );
 }
