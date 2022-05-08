@@ -13,7 +13,7 @@ const ManageInventory = () => {
     func()
   }, [])
   const removeItem = async(item) => {
-    const proceed = window.confirm('are you sure?');
+    const proceed = window.confirm('You Want to remove this item?');
     if(proceed){
       const url = `https://cryptic-everglades-57877.herokuapp.com/remove?rmitem=${item}`
       const { data } = await axios.get(url);

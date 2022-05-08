@@ -28,7 +28,7 @@ const Inventory = () => {
   const [addQuantity, setAddQuantity] = useState(0);
 
   const increaseQuantity = () => {
-    const proceed = window.confirm('are sure?');
+    const proceed = window.confirm('You want Increase Current Stock?');
     if(proceed){
       const func = () => {
         const url = `https://cryptic-everglades-57877.herokuapp.com/update?quantity=${quantity + Number(addQuantity)}&&id=${_id.split(':')[1]}`
@@ -40,7 +40,7 @@ const Inventory = () => {
   }
 
   const reduceQuantity = () => {
-    const proceed = window.confirm('are sure?')
+    const proceed = window.confirm('You want Delivered an Item?')
     if(proceed){
       const func = () => {
         const url = `https://cryptic-everglades-57877.herokuapp.com/update?quantity=${quantity - 1}&&id=${_id.split(':')[1]}`
