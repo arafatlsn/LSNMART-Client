@@ -17,10 +17,8 @@ const SignUp = () => {
     const confirmPassword = e.target.confirmPass?.value;
     if(password === confirmPassword){
       createUserWithEmailAndPassword(email, password);
-      if(!errorCreateEmailPass){
-        sendEmailVerification(email);
-        toast('Your email verification Link sent your email')
-      }
+      sendEmailVerification(email);
+      toast('Your email verification Link sent your email')
     }
     else{
       alert('confirm pass not matched')
